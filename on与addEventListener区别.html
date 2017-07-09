@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>on与addEvenListener的区别</title>
+
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: red;
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="child"></div>
+</div>
+
+<script>
+    window.onload = function () {
+        // 1.拿到标签
+        var box = document.getElementsByClassName('box')[0];
+        var child = box.getElementsByClassName('child')[0];
+
+        // 2.对他操作
+//        box.onclick = function () {
+//            console.log('box is onclick');
+//        }
+//        box.onclick = function () {
+//            console.log('2th box is onclick');
+//        }
+/*
+* OnClick方法会被覆盖,也就是多次执行只会执行一次,也就是最后一次
+ * addEventListener不会被覆盖,会全部触发,执行的是冒泡规则
+* */
+//        box.addEventListener('click', function () {
+//            console.log('addEventListener click');
+//        })
+//        box.addEventListener('click', function () {
+//            console.log('2th addEventListener click');
+//        })
+
+/**
+ *  element.addEventListener(event, function, useCapture)
+ * event    必须。字符串，指定事件名。
+ (注意: 不要使用 "on" 前缀。
+ 例如，使用 "click" ,而不是使用 "onclick"。 )
+ * function    必须。指定要事件触发时执行的函数。
+ (当事件对象会作为第一个参数传入函数。 事件对象的类型取决于特定的事件。
+ 例如， "click" 事件属于 MouseEvent(鼠标事件) 对象。)
+ * useCapture    可选。布尔值，指定事件是否在捕获或冒泡阶段执行。
+ (可能值: true - 事件句柄在捕获阶段执行;false- false- 默认。
+ 事件句柄在冒泡阶段执行)
+
+ 事件的捕获顺序是从爹到儿子
+ *
+ * */
+        box.addEventListener('click', function () {
+            console.log('box addEventListener click');
+        }, true);
+        child.addEventListener('click', function () {
+            console.log('child addEventListener click');
+        }, true);
+
+    }
+</script>
+
+</body>
+</html>

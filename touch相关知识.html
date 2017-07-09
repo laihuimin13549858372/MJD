@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>aboutTouch</title>
+
+    <style>
+        .testBox{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: lawngreen;
+        }
+    </style>
+</head>
+<body>
+<div class="testBox"></div>
+
+<script>
+
+    window.onload = function () {
+        // 1.get element
+        var testbox = document.querySelector('.testBox');
+
+
+        // 2.add Touch event Listener
+        var startX, movingX, changedX;
+        startX = 0;
+        movingX = 0;
+        changedX = 0;
+        testbox.addEventListener('touchstart', function (e) {
+//            var box = event.target; // event.target 相当于点击的标签
+//            var touch1st = event.touches[0];
+//            console.log(touch1st);
+//            console.log(box);
+//
+//            // we can get the event by a fun(e)
+//            console.log(e == event);
+
+            console.log('before' ,startX);
+            console.log('touch start!!');
+
+            startX = e.touches[0].clientX;
+            console.log(startX);
+        });
+        testbox.addEventListener('touchmove', function (e) {
+            // 让默认效果失效
+            e.preventDefault();
+            movingX = e.touches[0].clientX;
+            changedX = movingX - startX; // 向量变化
+
+//            console.log(startX, movingX, changedX);
+        });
+        testbox.addEventListener('touchend', function (e) {
+            console.log("end 了")
+
+            console.log(changedX);
+
+            // 通常做的工作,1.根据变化的值做出相应的UI变化   2. 还原参数值
+            startX = 0;
+            movingX = 0;
+            changedX = 0;
+        })
+
+    }
+</script>
+</body>
+</html>

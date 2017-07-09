@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>about tap</title>
+
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: red;
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="child"></div>
+</div>
+
+<script>
+    window.onload = function () {
+        // 1.拿到标签
+        var box = document.getElementsByClassName('box')[0];
+        var child = box.getElementsByClassName('child')[0];
+
+        // 2.对他操作
+//        box.addEventListener('click', function () {
+//            console.log('box addEventListener click');
+//        });
+
+        var startTimescamp = 0;
+        var endTimescamp = 0;
+
+
+        child.addEventListener('touchstart', function () {
+            startTimescamp = Date.now();
+            console.log('touchstart');
+
+        });
+        child.addEventListener('touchmove', function () {
+            console.log('touchmove');
+        });
+        child.addEventListener('touchend', function () {
+            endTimescamp = Date.now();
+            console.log('touchend - touchstart:',endTimescamp - startTimescamp);
+            console.log('touchend');
+
+        });
+
+
+        // 1.只要touchmove触发了,就不会触发click
+        // 2.touchend - touchstart:之间的差值小于700ms的时候,才会触发click
+        child.addEventListener('click', function () {
+            console.log(Date.now());
+            console.log('click - touchstart:', Date.now() - startTimescamp);
+            console.log('click - touchend:', Date.now() - endTimescamp);
+            console.log('child addEventListener click');
+        });
+        child.onclick = function () {
+            console.log('child is onclick');
+        }
+
+
+
+
+
+    }
+</script>
+
+</body>
+</html>

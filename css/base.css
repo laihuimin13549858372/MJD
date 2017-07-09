@@ -1,0 +1,206 @@
+*,
+::before,
+::after{
+    margin: 0;
+    padding: 0;
+    /*修改布局习惯,从外往里*/
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /*清除移动端设备默认的点击高亮效果*/
+    -webkit-tap-highlight-color: transparent;
+}
+
+body{
+    font-family: "Microsoft Yahei" sans-serif;
+    font-size: 12px;
+    color: #000;
+}
+
+input,textarea{
+    outline: none;
+    /*点击有效果*/
+    border: none;
+    /*去除iOS默认的一些非扁平化控件效果(风格不符合不如不要)*/
+    -webkit-appearance: none;
+}
+
+a{
+    text-decoration: none;
+    color: #666;
+}
+
+ol, ul{
+    list-style: none;
+}
+ul li a{
+    display: block;
+}
+
+/* 通常情况下,ul或者ol中的li浮动起来的时候,ul/ol都需要去浮动 */
+.clearfix::before,
+.clearfix::after{
+    content: ".";
+    display: block;
+    height: 0;
+    /*去浮动*/
+    clear: both;
+    /*隐藏内容,但是保留位置*/
+    visibility: hidden;
+}
+/* 类名前面包含xx */
+[class ^= "icon_"]{
+
+    background: url("../images/sprites.png") no-repeat;
+    -webkit-background-size: 200px 200px;
+    background-size: 200px 200px;
+}
+
+/* 细边框 */
+.lightborder{
+    position: relative;
+}
+.lightborder::after{
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: -1px;
+
+    width: 200%;
+    height: 200%;
+
+    border: 1px solid #e0e0e0;
+
+    -webkit-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    -webkit-transform-origin:left top;
+    transform-origin:left top;
+}
+
+
+/* 顶部 */
+.jd_base_header{
+    width: 100%;
+
+}
+.jd_base_header .topbar{
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    background: url("../images/header-bg.png") repeat-x;
+    border-bottom: 1px solid #e0e0e0;
+
+    position: relative;
+}
+
+.topbar .icon_back{
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    background-position: -22px 0;
+    width: 38px;
+    height: 44px;
+    /*相当于说明图片大小是18*20*/
+    padding: 12px 10px;
+    /* 背景图相对于内容框来定位 */
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
+    /* 背景图定位从内容开始计算 */
+    -webkit-background-origin: content-box;
+    background-origin: content-box;
+}
+.topbar .icon_shortcut{
+    position: absolute;
+    right: 10px;
+    top: 0;
+
+    background-position: -60px 0;
+    width: 40px;
+    height: 44px;
+    /*相当于说明图片大小是20*20*/
+    padding: 12px 10px;
+    /* 背景图相对于内容框来定位 */
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
+    /* 背景图定位从内容开始计算 */
+    -webkit-background-origin: content-box;
+    background-origin: content-box;
+}
+
+.topbar span.title{
+    font-size: 16px;
+}
+
+.topbar form{
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    padding-left: 40px;
+    padding-right: 50px;
+    /*background: #000;*/
+}
+.topbar form .icon_search{
+    position: absolute;
+    left: 50px;
+    top: 12px;
+
+    background-position: -60px -109px;
+    width: 20px;
+    height: 20px;
+}
+.topbar form input{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    margin-top: 7px;
+    padding: 0 50px;
+
+}
+
+.jd_base_header .shortcut{
+    width: 100%;
+    height: 57px;
+    background: #404042;
+    display: table;
+}
+.shortcut li{
+    display: table-cell;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
+.shortcut li.current{
+    background: #2d2d2d;
+}
+
+.shortcut li a{
+    width: 100%;
+    height: 100%;
+}
+.shortcut li a strong{
+    color: #fff;
+    /*font-size: 13px;*/
+    font-weight: normal;
+}
+
+.shortcut li a span{
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+.shortcut li a span.icon_home{
+    background-position: -30px -27px;
+}
+.shortcut li a span.icon_category{
+    background-position: -60px -27px;
+}
+.shortcut li a span.icon_cart{
+    background-position: -90px -27px;
+}
+.shortcut li a span.icon_me{
+    background-position: -120px -27px;
+}
